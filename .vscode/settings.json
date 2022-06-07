@@ -1,0 +1,49 @@
+{
+    "files.exclude": {
+        "**/*.aux": true,
+        "**/*.fdb_latexmk": true,
+        "**/*.fls": true,
+        "**/*.out": true,
+        "**/*.gz": true,
+        "**/*.bbl": true,
+        "**/*.blg": true,
+        "**/*.idx": true,
+        "**/*.ind": true,
+        "**/*.lof": true,
+        "**/*.lot": true,
+        "**/*.toc": true,
+        "**/*.acn": true,
+        "**/*.acr": true,
+        "**/*.alg": true,
+        "**/*.glg": true,
+        "**/*.glo": true,
+        "**/*.gls": true,
+        "**/*.snm": true,
+        "**/*.xdv":true,
+        "**/*.synctex(busy)": true,
+        "**/*.synctex.gz(busy)": true,
+        "**/*.nav": true,
+        "**/*.vrb": true,
+    },
+    "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk (xelatex)",
+            "tools": [
+                "xelatexmk"
+            ]
+        }
+    ],    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatexmk",
+            "command": "latexmk",
+            "args": [
+                "-xelatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        }
+    ],
+}

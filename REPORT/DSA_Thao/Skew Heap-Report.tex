@@ -1,0 +1,462 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{pgf}
+\usepackage{pgfpages}
+\usepackage{tikz} % titlepage border
+\usetikzlibrary{calc} % titlepage border
+\usepackage{niceframe}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{fancyhdr}
+\usepackage{minitoc}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{sectsty}
+\usepackage{adjustbox}%used for correct positioning of tables
+\usepackage{titletoc}
+\usepackage{adjustbox}%use to refined tables
+\usepackage{float}
+\usepackage{url}% solve missing $ in url
+\usepackage{listings}% format source code, use with new custom command \code
+
+%format source code inline
+\newcommand{\code}[1]{\lstinline[language=C++, basicstyle=\color{orange!40!black}\ttfamily,morekeywords={cout,endl,\&,string},
+keywordstyle=\color{blue},
+commentstyle=\color{green!50!black},]{#1}}
+
+% set default graphic path 
+\graphicspath{ {./Pictures/} }
+
+
+\sectionfont{\fontsize{20}{5}\selectfont}
+\subsectionfont{\fontsize{15}{5}\selectfont}
+\subsubsectionfont{\fontsize{12}{5}\selectfont}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\newcommand\tab[1][0.5cm]{\hspace*{#1}}
+
+%TitlePage
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{tikzpicture}[remember picture,overlay,inner sep=0,outer sep=0]
+        \draw[blue!70!black,line width=4pt] ([xshift=-1.5cm,yshift=-2cm]current page.north east) coordinate (A)--([xshift=1.5cm,yshift=-2cm]current page.north west) coordinate(B)--([xshift=1.5cm,yshift=2cm]current page.south west) coordinate (C)--([xshift=-1.5cm,yshift=2cm]current page.south east) coordinate(D)--cycle;
+
+        \draw ([yshift=0.5cm,xshift=-0.5cm]A)-- ([yshift=0.5cm,xshift=0.5cm]B)--
+        ([yshift=-0.5cm,xshift=0.5cm]B) --([yshift=-0.5cm,xshift=-0.5cm]B)--([yshift=0.5cm,xshift=-0.5cm]C)--([yshift=0.5cm,xshift=0.5cm]C)--([yshift=-0.5cm,xshift=0.5cm]C)-- ([yshift=-0.5cm,xshift=-0.5cm]D)--([yshift=0.5cm,xshift=-0.5cm]D)--([yshift=0.5cm,xshift=0.5cm]D)--([yshift=-0.5cm,xshift=0.5cm]A)--([yshift=-0.5cm,xshift=-0.5cm]A)--([yshift=0.5cm,xshift=-0.5cm]A);
+
+
+        \draw ([yshift=-0.3cm,xshift=0.3cm]A)-- ([yshift=-0.3cm,xshift=-0.3cm]B)--
+        ([yshift=0.3cm,xshift=-0.3cm]B) --([yshift=0.3cm,xshift=0.3cm]B)--([yshift=-0.3cm,xshift=0.3cm]C)--([yshift=-0.3cm,xshift=-0.3cm]C)--([yshift=0.3cm,xshift=-0.3cm]C)-- ([yshift=0.3cm,xshift=0.3cm]D)--([yshift=-0.3cm,xshift=0.3cm]D)--([yshift=-0.3cm,xshift=-0.3cm]D)--([yshift=0.3cm,xshift=-0.3cm]A)--([yshift=0.3cm,xshift=0.3cm]A)--([yshift=-0.3cm,xshift=0.3cm]A);
+
+    \end{tikzpicture}
+
+    \centerline{\LARGE{\textbf{UNIVERSITY OF SCIENCE}}}
+    \bigskip
+    \centerline{\large{VIETNAM NATIONAL UNIVERSITY - HO CHI MINH CITY}}
+
+    \centerline{\Large{--------------------------------------}}
+
+    \bigskip
+
+    \centerline{\includegraphics[width=50mm]{logo.png}}
+
+    \bigskip
+
+    \centerline{\niceframe[11cm]
+        {
+            \begin{center}
+                \LARGE{\textbf{PROJECT REPORT}}
+                \linebreak
+                \centering\LARGE{\textbf{Skew Heap}}
+            \end{center}
+        }
+    }
+
+    \bigskip
+    \bigskip
+
+    \centerline{\LARGE{\textbf{DATA STRUCTURE AND ALGORITHM}}}
+    \raggedright
+    \bigskip
+
+    \begin{table}[h]
+        \begin{adjustbox}{width=\columnwidth,center}
+            \begin{tabular}{rrlc}
+                 & Theory Lecturer & Nguyen Thanh Phuong &          \\
+                 & Instructors     & Bui Huy Thong       &          \\
+                 &                 & Nguyen Ngoc Thao    &          \\
+                 &                 &                     &          \\
+                 & Students        & Nguyen Quoc Huy     & 21127511 \\
+                 &                 & Phu Thanh Nhan      & 21127382 \\
+                 &                 & Le Hoang Sang       & 21127158 \\
+                 &                 & Vo Thanh Tu         & 21127469
+            \end{tabular}
+        \end{adjustbox}
+    \end{table}
+\end{titlepage}
+
+
+
+%Header&Footer
+
+\pagestyle{fancy}
+\fancyhf{}
+\addtolength{\topmargin}{-0.70894pt}
+\setlength{\headheight}{12.70894pt}
+
+\lhead{\textbf{FIT-HCMUS}}
+\rhead{\textbf{Skew Heap}}
+\rfoot{\textbf{\thepage}}
+
+
+
+%Tableofcontents
+
+\tableofcontents
+
+\pagebreak
+
+\section{Introduction}
+
+\subsection{Group members and contact information}
+There are 4 members in our group.
+\begin{itemize}
+    \item 21127511 - Nguyen Quoc Huy - nqhuy21@clc.fitus.edu.vn
+    \item 21127382 - Phu Thanh Nhan - ptnhan21@clc.fitus.edu.vn
+    \item 21127158 - Le Hoang Sang - lhsang21@clc.fitus.edu.vn
+    \item 21127469 - Vo Thanh Tu - vttu21@clc.fitus.edu.vn
+\end{itemize}
+\subsection{Work assignments}
+Our work assignments are as follows:
+\begin{itemize}
+    \item Phu Thanh Nhan in charge of organizing and refining the report
+    \item Le Hoang Sang
+    \item Vo Thanh Tu
+    \item Nguyen Quoc Huy
+\end{itemize}
+\subsection{Project organization}
+
+Main file and subordinates:
+
+\begin{itemize}
+    \item main.cpp
+    \item SkewHeap.cpp
+    \item SkewHeap.h
+\end{itemize}
+
+\noindent Library used (Allowed library for the course):
+
+\begin{itemize}
+    \item \textbf{iostream} used for manipulating input/output streams
+\end{itemize}
+\newpage
+\subsection{Programming note}
+This project uses the C++ 11 standard\\
+
+We use struct \code{Node} to implement HeapNode, it includes:
+\begin{itemize}
+    \item \code{int data}: to store data as 32-bit integer.
+    \item \code{Node* left, right}: pointer to the Node's childrend.
+    \item Constructor with default value.
+    \item \code{Node* Clone()}: helps get a clone of Node.
+\end{itemize}
+
+We use struct \code{SkewHeap} to implement Skew Heap data structure. Assume that the top of this SkewHeap is the smallest number in this SkewHeap, it includes:
+\begin{itemize}
+    \item \code{Node* root}: the root of heap.
+    \item \code{int heap_size}: store heap size, reduce time to get size.
+    \item Constructor with no parameter and with an array as parameter.
+    \item \code{Size(), Empty()}: using \code{heap_size} to return the result.
+    \item \code{Push(int data)}: inseart a node has \code{data} into this 
+    \code{SkewHeap}.
+    \item \code{Top()} return the smallest number in SkewHeap. 
+    \item \code{Pop()} remove Top element and doesn't return anythings.
+    \item \code{Print()} Print out the SkewHeap to the output stream. Data is organized similarly a binary tree, which each line is a level, from top to bottom, using BFS algoritm.
+    \item \code{Clone}: use \code{Node.Clone()} to help them clone the Node.
+    \item \code{PrintPreOrder(), PrintInOrder(), PrintPostOrder()} show the path with three kind of traversal.
+    \item \code{Clear()}: clear all node, avoid memory-leaking.
+\end{itemize}
+
+We use \code{Merge()} to merge two node, one of two node become a new root and no nodes are created.\\
+
+With \code{MergeTree()}, we clone two SkewHeap and use a new SkewHeap to store everything. With this function, the result do not depend on the old nodes.
+\pagebreak
+
+\section{Overall information}
+\subsection{Idea}
+The idea for the Skew Heap is based on the ability to perform not just a single operation but a sequence of operations.
+
+\subsection{History}
+The Skew Heap creators, also known as a self-adjusting Heap, are Daniel Dominic Sleator and Robert Endre Tarjan in February 1986.
+The Skew Heap by itself is a form of the leftist Heap.
+Many data structures are designed to have the running time per operation for the worst-case scenario, the smallest possible.
+However, we need to look further into the typical applications of the data structures, which are multiple operations rather than one.
+
+\subsection{Applications}
+Application for Skew Heap: Skew Heap offer faster merge time as they are a particular case of leftist trees.
+A Skew Heap is not structurally restricted. This can make the height of the tree non-logarithmic.
+Real-life application: SIM user information storage
+
+\subsection{Variants}
+Up unitl the time of writing this report, we have not found any variants of Skew Heap.
+
+
+\pagebreak
+
+\section{Comparisons with other Heap Structures}
+\subsection{Basic Heap vs Skew Heap}
+\subsubsection{Condition satisfaction}
+Basic Heap:
+\begin{itemize}
+    \item \textbf{Min Heap}: Node parents are always smaller than their children (descedants)
+    \item \textbf{Max Heap}: Node parents are always bigger than their descedants
+\end{itemize}
+Skew Heap, if X is a node with L and R are its left and right children, then:
+\begin{itemize}
+    \item $ X.value \leq L.value $
+    \item $ X.value \leq R.value $
+    \item Swapping children at every step.
+\end{itemize}
+
+\subsubsection{Basic operations}
+
+Basic Heap, there are three primary operations:
+\begin{itemize}
+    \item Insertion
+    \item Deletion
+    \item Merge
+\end{itemize}
+Skew Heap:
+\begin{itemize}
+    \item Adding a value to a Skew Heap is like merging a tree with one node with the original tree
+    \item Removing the first value in a Heap can be accomplished by removing the root and merging its child subtrees.
+    \item In summary, there is only one main operation, merging.
+\end{itemize}
+
+\subsubsection{Experimental results and conclusion}
+Experimental results\\
+Conclusion
+\begin{itemize}
+    \item Skew Heaps are advantageous because they merge more quickly than Binary Heap. There are no structural constraints, so there is no need to guarantee that the Tree's height is logarithmic. Only two conditions must be satisfied: The general Heap order must be enforced.
+    \item Binary Heaps must be traversed in a specific orpder: left-node-right, node-left-right, etc when adding a node, you must traverse the Tree to find the right location.
+    \item The main operation in Skew Heaps is Merge.
+\end{itemize}
+
+
+\subsection{Leftist Heap vs Skew Heap}
+In this segment, the Skew Heap seems to suffer more because the Leftist Heap is an improved version of the Skew Heap, thanks to a more conditional swap than the unconditional Skew Heap. \\
+
+P/S: We'll not go far on Leftist Heap. Just show the disadvantage and advantages between Skew Heap and its improved version.
+
+\subsubsection{Similarities}
+\begin{itemize}
+    \item The time complexity of both Heaps is $O(\log n)$ in all operations.
+    \item The main operation of both Heaps is merge.
+\end{itemize}
+\subsubsectionmark{Differences}
+\begin{itemize}
+    \item Due to the no structural constraints, there is no guarantee that the height of the Skew Heap is logarithmic. A Skew Heap is just a self-adjusting form of a Leftist Heap.
+    \item On the other hand, the Leftist Heap may be unbalanced, but every node has an s-value (or rank or distance) which is the distance to the nearest leaf. That makes Leftist Heap seem better.
+\end{itemize}
+
+Here is some example to show the difference between 2 Heap:
+We have an array with five elements: 10, 20, 30, 40, and 50, and put it into 2 Heaps.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\textwidth]{SkewVSLeft.png}
+        \caption{Visualization of Skew Heap vs Leftist Heap}
+    \end{center}
+\end{figure}
+
+As you can see, the Skew Heap tends to balance itself after each step, while Leftist Heap has an index above each node called null path length to show the distance between that node and the null node.\\
+
+In that way, the leftist seems to work more efficiently than the Skew Heap.\\
+\subsubsection{Experimental results and conclusion}
+\pagebreak
+
+
+\section{Step-by-step descriptions}
+\subsection{A few notes}
+Conditions when working with Skew Heap:
+\begin{itemize}
+    \item Heap can be just one node and also a Skew Heap
+    \item Skew Heap is somewhat similar to min-Heap, where the parent nodes are all smaller than the child nodes (The top node is always the smallest node).
+\end{itemize}
+\subsection{Push}
+The purpose of Push(Insertion) in Skew Heap is to add a node in the correct root
+\begin{enumerate}
+    \item After comparing all the correct nodes in the right branch, put it in the necessary place. If it’s the smallest node in the Heap, now its left child would be the Heap.
+    \item Begin from the adding place, and swap the branch where that node occurs with the left branch.
+    \item Move to node parent, then continue to swap like step 2.
+    \item Continue step 3 until there is no more node parent.
+\end{enumerate}
+To exemplify, here is an example:
+We have a Heap with 3 nodes
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale = 1]{PushEX1.png}
+    \end{center}
+\end{figure}
+Now when adding node 50 into Skew Heap:
+\begin{itemize}
+    \item First, add the node in the correct position of root $\to$ right 
+    \begin{itemize}
+        \item Compare 10 $<$ 50
+        \item Move to root $=$ root $\to$ right, compare 20 $<$ 50
+        \item Nove to root $=$ root $\to$ right now. This node is null, so we have to insert node 50 in this place
+    \end{itemize}
+    \item Second, swap the right and left branches
+    \begin{itemize}
+        \item Swap left and right nodes of 20, then move to the parent of node 20, which is now node 10
+        \begin{figure}[H]
+            \begin{center}
+                \includegraphics[scale = 1]{PushEX2.png}
+            \end{center}
+        \end{figure}
+        \item Continue swap left and right nodes of 10
+    \end{itemize}
+    \item Continue swapping between 2 branches until there is no more node parent
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[scale = 1]{PushEX3.png}
+        \end{center}
+    \end{figure}
+\end{itemize}
+
+Example of swapping node smallest into Skew Heap, now we get the previous Heap
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale = 1.3]{PushEX4.png}
+    \end{center}
+\end{figure}
+Add node 5:
+\begin{itemize}
+    \item As we know, this is the smallest node in the Heap, so put the Heap at the right branch of node 5.
+    \item Then, swap the right child with the left child(the left child is null before the swap).
+    \item Thus, in simplicity, what we have to do when inserting the node have the smallest key value in the Heap is put the Heap at the left branch of that node, and the correct child is null.
+\end{itemize}
+Thus we have the final result:
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale = 1]{PushEX5.png}
+    \end{center}
+\end{figure}
+\pagebreak
+\subsection{Pop}
+The purpose when Pop(deleting) a node in Heap:
+\begin{enumerate}
+    \item The deletion is just for moving the smallest node ( the top node).
+    \item After eliminating the smallest node, there are 2 child nodes of the eliminated node. Compare these 2 nodes. The smaller node is the top node, and its child is decided based on its eliminated parent node. For example, if the smaller node compared is the right child of the parent node, then its child node is placed in the right branch.
+    \item If the top node contains no more than 1 node, then delete that node, and the new Heap would be the non-null child.
+    \item If the top node has a left null child after deletion, swap the right branch with the left branch and make sure the left node always exists.
+          %Co nen gop lai 2 cai if(de rieng ra cho de nhin trc)
+\end{enumerate}
+To exemplify, here is an example:
+Delete the top of this particular Heap:
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale = 1.25]{PopEX1.png}
+    \end{center}
+\end{figure}
+
+\begin{itemize}
+    \item As we know, the smallest node of the Heap is 2, then eliminate that node
+    \item Then we have 2 child nodes, 4 and 3, compare these nodes, and 3 is the chosen.
+    \item Look again at the original Heap. Node 3 is the RIGHT child of the old top node.
+    \item Now, put the left branch of the old top node (node 4) at the RIGHT child of node 3 (new top node).
+\end{itemize}
+We have the following result:
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale = 1.5]{PopEX2.png}
+    \end{center}
+\end{figure}
+Here are some continued deletions of this Heap:
+
+Removing node 3:
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=1.5]{PopEX3.png}
+    \end{center}
+\end{figure}
+Removing node 4:
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=1.5]{PopEX4.png}
+    \end{center}
+\end{figure}
+We have a situation:
+The left child of node 5 is now null. Our purpose is to ensure that the left child always contains a value, so we swap the left branch with the right branch.
+Thus we have the final result:
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale = 1]{PopEX5.png}
+    \end{center}
+\end{figure}
+
+\section{Complexity evaluations}
+
+\paragraph{\tab Time complexity:}
+
+\subsection{Merge}
+Best-case: $O(1)$ when there is no more left root\\
+Worst-case: $O(n)$ when the root left is not over yet
+
+
+\subsection{Size}
+Time complexity in all cases: $O(1)$
+
+
+\subsection{IsEmpty}
+Time complexity in all cases: $O(1)$
+
+
+\subsection{Push}
+Best-case: $O(1)$ when the Heap is empty\\
+Worst-case: $O(n)$ When the Heap is not empty:
+
+
+\subsection{Pop}
+Best-case: $O(1)$ when the Heap is empty, or the Heap contains 1 node\\
+Average-case: $O(log n) $
+
+
+\subsection{Top}
+Time complexity in all cases: $O(1)$
+
+
+\subsection{Print}
+Time complexity in all cases: $O(n)$
+
+
+\subsection{Clone}
+Best-case: $O(1)$ when the Heap is empty\\
+Worst-case: When the Heap is not empty: $O(n)$
+
+%co them clearNode khong
+
+\pagebreak
+
+\section{References}
+
+\textbf{Skew Heap function}: \url{https://www.geeksforgeeks.org/skew-Heap/}\\
+\textbf{Skew Heap theory}: \url{https://en.wikipedia.org/wiki/Skew_Heap}\\
+\textbf{Authors of Skew Heap}: \url{https://www.cs.cmu.edu/~sleator/papers/Adjusting-Heaps.html}\\
+\textbf{Leftist Heap}: \url{https://iq.opengenus.org/skew-Heap/}\\
+\textbf{Operations on Skew Heap}: \url{https://www.wisdomjobs.com/e-university/data-structures-tutorial-290/skew-Heap-7243.html}\\
+\textbf{Visualization screenshot in Step-by-step section, Comparison section and Complexity section}: \url{https://www.cs.usfca.edu/~galles/visualization/SkewHeap.html}
+
+\bigskip
+\bigskip
+\bigskip
+
+\begin{center}
+    \LARGE{We appreciate your reading!}
+\end{center}
+% Hide Blank Pages Numbers + Headers
+\let\origdoublepage\cleardoublepage
+\newcommand{\clearemptydoublepage}{%
+  \clearpage
+  {\pagestyle{empty}\origdoublepage}%
+}
+\end{document}
